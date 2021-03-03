@@ -4,7 +4,7 @@
 //#define NUM_LEDS 840
 #define UNIVERSE_SIZE 120
 #define START_UNIVERSE 0
-#define UNIVERSES_COUNT 7
+#define UNIVERSES_COUNT 6
 
 #define ARTNET_PORT 6454
 #define SHOW_DELAY 2000

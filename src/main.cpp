@@ -20,7 +20,7 @@ uint32_t syncmax,sync;
 bool allowShow = false;
 long lastPacketTime = 0;
 
-CRGB leds[840]; //840 is maximum for 7 universes with 120 pixels each
+CRGB leds[960]; //840 is maximum for 8 universes with 120 pixels each
 WiFiUDP udp;
 
 void fillFastLed();
@@ -43,7 +43,7 @@ void readUdp() {
     int uniSize = (headerData[16] << 8) + headerData[17];
     uint8_t universe = headerData[14];
     if(universe >= START_UNIVERSE && universe < (START_UNIVERSE + universesCount) && uniSize > 500) {
-      // printf("univ: %d, time: %lumcs\n", universe, micros() - lastPacketTime);
+      printf("univ: %d, time: %lumcs\n", universe, micros() - lastPacketTime);
       unisCount++;
       lastPacketTime = micros();
       allowShow = true;
@@ -74,14 +74,14 @@ void showSyncCount() {
 
 //sends data to strips after passing some time after last packet received
 void showSyncTime() {
-           if(allowShow && (micros() - lastPacketTime) > SHOW_DELAY) {
+           if(allowShow && (((micros() - lastPacketTime) > SHOW_DELAY) || unisCount == universesCount)) {
              allowShow = false;
            long tshow1 = micros();
            FastLED.show();
            long tshow2 = micros();
-          //  printf("diff: %d\n", universesCount-unisCount);
+           printf("diff: %d\n", universesCount-unisCount);
              lostPackets = lostPackets + (universesCount-unisCount);
-          //  printf("***** show: %lu micros, lost: %d\n", tshow2-tshow1, lostPackets);
+           printf("***** show: %lu micros, lost: %d\n", tshow2-tshow1, lostPackets);
            unisCount = 0;
          }
 }
@@ -95,6 +95,8 @@ void loop() {
 void fillFastLed() {
   switch (universesCount)
   {
+  case 8:
+    FastLED.addLeds<NEOPIXEL, 4>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 7:
     FastLED.addLeds<NEOPIXEL, 2>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 6:
