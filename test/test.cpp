@@ -1,0 +1,4 @@
+int arr[];
+void main() {
+
+}
