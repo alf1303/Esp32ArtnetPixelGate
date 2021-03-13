@@ -26,7 +26,7 @@ bool allowShow = false;
 long lastPacketTime = 0;
 
 CRGB leds[960]; //840 is maximum for 8 universes with 120 pixels each
-// WiFiUDP udp;
+WiFiUDP udp;
 
 void fillFastLed();
 
@@ -49,21 +49,6 @@ void connectWiFi() {
     Serial.println(WiFi.localIP());
 }
 
-ArtnetESP32 artnet;
-void displayfunction()
-{
-  if (artnet.frameslues%100==0)
-   Serial.printf("nb frames read: %d  nb of incomplete frames:%d lost:%.2f %%\n",artnet.frameslues,artnet.lostframes,(float)(artnet.lostframes*100)/artnet.frameslues);
-   //here the buffer is the led array hence a simple FastLED.show() is enough to display the array
-   FastLED.show();
-}
-
-void artNetYvesConfig() {
-  artnet.setFrameCallback(&displayfunction); //set the function that will be called back a frame has been received
-  artnet.setLedsBuffer((uint8_t*)leds); //set the buffer to put the frame once a frame has been received
-  artnet.begin(pixelCount, pixelsPerUni, startUniverse); //configure artnet
-}
-
 void beginLan() {
   WiFi.onEvent(WiFiEvent);
   ETH.begin(ETH_ADDR, ETH_POWER_PIN, ETH_MDC_PIN, ETH_MDIO_PIN, ETH_TYPE, ETH_CLK_MODE);
@@ -74,37 +59,37 @@ void setup() {
   Serial.begin(115200);
   beginLan();
   //connectWiFi();
-   artNetYvesConfig();
-  //  udp.begin(6454);
+  //  artNetYvesConfig();
+   udp.begin(6454);
   fillFastLed();
       msyncmax=(1<<universesCount)-1;
       msync=0;
 }
 
 uint32_t unisCount = 0;
-// void readUdp() {
-//   if(udp.parsePacket()) {
-//     udp.read(headerData, 18);
-//     int uniSize = (headerData[16] << 8) + headerData[17];
-//     uint8_t universe = headerData[14];
-//     if(universe >= startUniverse && universe < (startUniverse + universesCount) && uniSize > 500) {
-//       printf("univ: %d, time: %lumcs\n", universe, micros() - lastPacketTime);
-//       unisCount++;
-//       lastPacketTime = micros();
-//       allowShow = true;
-//       int offset = (universe - startUniverse)*pixelsPerUni;
-//       udp.read((uint8_t *)(leds+offset), pixelsPerUni*3);
+void readUdp() {
+  if(udp.parsePacket()) {
+    udp.read(headerData, 18);
+    int uniSize = (headerData[16] << 8) + headerData[17];
+    uint8_t universe = headerData[14];
+    if(universe >= startUniverse && universe < (startUniverse + universesCount) && uniSize > 500) {
+      // printf("univ: %d, time: %lumcs\n", universe, micros() - lastPacketTime);
+      unisCount++;
+      lastPacketTime = micros();
+      allowShow = true;
+      int offset = (universe - startUniverse)*pixelsPerUni;
+      udp.read((uint8_t *)(leds+offset), pixelsPerUni*3);
     
-//       msync=msync | (1<<(universe - startUniverse));
-//                if(universe==startUniverse)
-//          {
-//           msync=1;
-//          }
+      msync=msync | (1<<(universe - startUniverse));
+               if(universe==startUniverse)
+         {
+          msync=1;
+         }
 
-//     }
-//     udp.flush();
-//   }
-// }
+    }
+    udp.flush();
+  }
+}
 
 //sends data to strips when packet for all universes received
 void showSyncCount() {
@@ -133,13 +118,9 @@ void showSyncTime() {
 
 void loop() {
   //MyLan
-  // readUdp();
-  //showSyncCount();
-  // showSyncTime();
-  
-
-//YvesLAN+WIFI
-  artnet.readFrame(); //ask to read a full frame
+  readUdp();
+  // showSyncCount();
+  showSyncTime();
 }
 
 void fillFastLed() {
