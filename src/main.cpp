@@ -5,7 +5,7 @@
 #include <artnetESP32/ArtnetESP32.h>
 FASTLED_USING_NAMESPACE
 
-IPAddress ipaddr = IPAddress(192,168,0,53);
+IPAddress ipaddr = IPAddress(192,168,0,47);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
