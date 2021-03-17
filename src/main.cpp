@@ -5,7 +5,7 @@
 #include <artnetESP32/ArtnetESP32.h>
 FASTLED_USING_NAMESPACE
 
-IPAddress ipaddr = IPAddress(192,168,0,51);
+IPAddress ipaddr = IPAddress(192,168,0,47);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
@@ -73,7 +73,7 @@ void readUdp() {
     int uniSize = (headerData[16] << 8) + headerData[17];
     uint8_t universe = headerData[14];
     if(universe >= startUniverse && universe < (startUniverse + universesCount) && uniSize > 500) {
-      // printf("univ: %d, time: %lumcs\n", universe, micros() - lastPacketTime);
+      printf("univ: %d, time: %lumcs\n", universe, micros() - lastPacketTime);
       unisCount++;
       lastPacketTime = micros();
       allowShow = true;
@@ -97,7 +97,7 @@ void showSyncCount() {
            long tshow1 = micros();
            FastLED.show();
            long tshow2 = micros();
-          //  printf("***** show: %lu micros\n", tshow2-tshow1);
+           printf("***** show: %lu micros\n", tshow2-tshow1);
            msync=0;
          }
 }
@@ -106,12 +106,17 @@ void showSyncCount() {
 void showSyncTime() {
            if(allowShow && (((micros() - lastPacketTime) > SHOW_DELAY) || unisCount == universesCount)) {
              allowShow = false;
-           long tshow1 = micros();
+          //  long tshow1 = micros();
            FastLED.show();
-           long tshow2 = micros();
-           printf("diff: %d\n", universesCount-unisCount);
-             lostPackets = lostPackets + (universesCount-unisCount);
-           printf("***** show: %lu micros, lost: %d\n", tshow2-tshow1, lostPackets);
+          //  printf("***** show: %lu micros\n", tshow2-tshow1);
+                     printf("***** show:\n");
+
+          //  long tshow2 = micros();
+          //  int diff = universesCount-unisCount;
+          //  if(diff != 0 || diff != universesCount)
+          //  printf("diff: %d\n", universesCount-unisCount);
+            //  lostPackets = lostPackets + (universesCount-unisCount);
+          //  printf("***** show: %lu micros, lost: %d\n", tshow2-tshow1, lostPackets);
            unisCount = 0;
          }
 }
