@@ -5,7 +5,7 @@
 #include <artnetESP32/ArtnetESP32.h>
 FASTLED_USING_NAMESPACE
 
-IPAddress ipaddr = IPAddress(192,168,0,47);
+IPAddress ipaddr = IPAddress(192,168,0,53);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
@@ -132,24 +132,24 @@ void fillFastLed() {
   switch (universesCount)
   {
   case 8:
-    FastLED.addLeds<NEOPIXEL, 4>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 4, RGB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 7:
-    FastLED.addLeds<NEOPIXEL, 2>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 2, RGB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 6:
-    FastLED.addLeds<NEOPIXEL, 15>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 15, RGB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 5:
-    FastLED.addLeds<NEOPIXEL, 32>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 32, RGB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 4:
-    FastLED.addLeds<NEOPIXEL, 33>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 33, RGB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 3:
-    FastLED.addLeds<NEOPIXEL, 14>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 14, RGB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 2:
-    FastLED.addLeds<NEOPIXEL, 12>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 12, RGB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE);
   case 1:
-    FastLED.addLeds<NEOPIXEL, 13>(leds, 0, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 13, RGB>(leds, 0, UNIVERSE_SIZE);
     break;
   default:
-    FastLED.addLeds<NEOPIXEL, 13>(leds, 0, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 13, RGB>(leds, 0, UNIVERSE_SIZE);
     break;
   }
 }

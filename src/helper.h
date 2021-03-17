@@ -3,11 +3,11 @@
 
 //#define NUM_LEDS 840
 #define UNIVERSE_SIZE 120
-#define START_UNIVERSE 47
+#define START_UNIVERSE 53
 #define UNIVERSES_COUNT 6
 
 #define ARTNET_PORT 6454
-#define SHOW_DELAY 2000
+#define SHOW_DELAY 500
 
 /* 
    * ETH_CLOCK_GPIO0_IN   - default: external clock from crystal oscillator
