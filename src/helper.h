@@ -3,7 +3,7 @@
 
 //#define NUM_LEDS 840
 #define UNIVERSE_SIZE 120
-#define START_UNIVERSE 53
+#define START_UNIVERSE 47
 #define UNIVERSES_COUNT 6
 
 #define ARTNET_PORT 6454
