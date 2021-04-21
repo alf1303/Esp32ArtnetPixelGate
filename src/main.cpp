@@ -18,7 +18,7 @@ uint16_t pixelCount = pixelsPerUni * universesCount;
 
 uint8_t uniData[512];
 uint8_t headerData[18]; //artnetHeader
-int16_t lostPackets = 0;
+long lostPackets = 0;
 
 //for syncCount
 uint32_t msyncmax, msync; 
@@ -137,13 +137,16 @@ void showSyncCount() {
 
 //sends data to strips after passing some time after last packet received
 void showSyncTime() {
-           if(allowShow && (((micros() - lastPacketTime) > SHOW_DELAY) || unisCount == universesCount)) {
+           if(allowShow && (unisCount == universesCount || ((micros() - lastPacketTime) > SHOW_DELAY))) {
              allowShow = false;
           //  long tshow1 = micros();
            FastLED.show();
           //  printf("***** show: %lu micros\n", tshow2-tshow1);
-                     printf("***** show:\n");
-
+          if(unisCount != UNIVERSES_COUNT) {
+            lostPackets++;
+            printf("***** lost: %d, packets loosed: %lu\n", unisCount, lostPackets);
+          }
+          
           //  long tshow2 = micros();
           //  int diff = universesCount-unisCount;
           //  if(diff != 0 || diff != universesCount)
