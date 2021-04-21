@@ -5,7 +5,7 @@
 #include <artnetESP32/ArtnetESP32.h>
 FASTLED_USING_NAMESPACE
 
-IPAddress ipaddr = IPAddress(192,168,0,47);
+IPAddress ipaddr = IPAddress(192,168,0,41);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
@@ -147,24 +147,50 @@ void fillFastLed() {
   switch (universesCount)
   {
   case 8:
-    FastLED.addLeds<WS2813, 4, RGB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
+    FastLED.addLeds<WS2813, 15, RGB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
   case 7:
-    FastLED.addLeds<WS2813, 2, RGB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); //*16
+    FastLED.addLeds<WS2813, 4, RGB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); //*16
   case 6:
-    FastLED.addLeds<WS2813, 15, RGB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); //*34
+    FastLED.addLeds<WS2813, 16, RGB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); //*34
   case 5:
-    FastLED.addLeds<WS2813, 32, RGB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); //35
+    FastLED.addLeds<WS2813, 5, RGB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); //35
   case 4:
-    FastLED.addLeds<WS2813, 33, RGB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); //32
+    FastLED.addLeds<WS2813, 13, RGB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); //32
   case 3:
     FastLED.addLeds<WS2813, 14, RGB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); //33
   case 2:
-    FastLED.addLeds<WS2813, 12, RGB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); //* 14
+    FastLED.addLeds<WS2813, 33, RGB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); //* 14
   case 1:
-    FastLED.addLeds<WS2813, 13, RGB>(leds, 0, UNIVERSE_SIZE); //13
+    FastLED.addLeds<WS2813, 32, RGB>(leds, 0, UNIVERSE_SIZE); //13
     break;
   default:
-    FastLED.addLeds<WS2813, 13, RGB>(leds, 0, UNIVERSE_SIZE);
+    FastLED.addLeds<WS2813, 32, RGB>(leds, 0, UNIVERSE_SIZE);
     break;
   }
 }
+
+// void fillFastLed() {
+//   switch (universesCount)
+//   {
+//   case 8:
+//     FastLED.addLeds<WS2813, 4, RGB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
+//   case 7:
+//     FastLED.addLeds<WS2813, 2, RGB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); //*16
+//   case 6:
+//     FastLED.addLeds<WS2813, 15, RGB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); //*34
+//   case 5:
+//     FastLED.addLeds<WS2813, 32, RGB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); //35
+//   case 4:
+//     FastLED.addLeds<WS2813, 33, RGB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); //32
+//   case 3:
+//     FastLED.addLeds<WS2813, 14, RGB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); //33
+//   case 2:
+//     FastLED.addLeds<WS2813, 12, RGB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); //* 14
+//   case 1:
+//     FastLED.addLeds<WS2813, 13, RGB>(leds, 0, UNIVERSE_SIZE); //13
+//     break;
+//   default:
+//     FastLED.addLeds<WS2813, 13, RGB>(leds, 0, UNIVERSE_SIZE);
+//     break;
+//   }
+// }
