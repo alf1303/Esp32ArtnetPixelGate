@@ -1,3 +1,5 @@
+//platformio run -t upload --upload-port 192.168.0.41
+
 #include <Arduino.h>
 #include <FastLED.h>
 #include <helper.h>
@@ -27,8 +29,6 @@ long lastPacketTime = 0;
 
 CRGB leds[960]; //840 is maximum for 8 universes with 120 pixels each
 WiFiUDP udp;
-
-void fillFastLed();
 
 void connectWiFi() {
   WiFi.mode(WIFI_STA);
@@ -64,6 +64,25 @@ void test() {
  delay(200);
 }
 
+void test2() {
+  uint8_t size = 24;
+  uint16_t testLeds[size] = {0,1,118,119,120,121,238,239,240,241,358,359,360,361,478,479,480,481,598,599,600,601,718,719};
+  for(int i = 0; i < size; i++) {
+    leds[testLeds[i]].setRGB(0, 0, 50);
+  }
+  FastLED.show();  
+  delay(100);
+  fill_solid(leds, 960, CRGB::Black);
+  FastLED.show();
+  delay(200);
+}
+
+void performTest(void (*f)(void)) {
+  f();
+  f();
+  f();
+}
+
 void setup() {
   Serial.begin(115200);
   delay(10);
@@ -76,9 +95,8 @@ void setup() {
       msync=0;
 
   FastLED.clear();
-  test();
-  test();
-  test();
+  performTest(test2);
+  OTA_Func();
 }
 
 uint32_t unisCount = 0;
@@ -138,6 +156,7 @@ void showSyncTime() {
 
 void loop() {
   //MyLan
+  ArduinoOTA.handle();
   readUdp();
   // showSyncCount();
   showSyncTime();
@@ -194,3 +213,39 @@ void fillFastLed() {
 //     break;
 //   }
 // }
+
+  //OTA - Flashing over Air
+void OTA_Func() {
+    ArduinoOTA.onStart([]() {
+    String type;
+    if (ArduinoOTA.getCommand() == U_FLASH) {
+      type = "sketch";
+    } else { // U_FS
+      type = "filesystem";
+    }
+
+    // NOTE: if updating FS this would be the place to unmount FS using FS.end()
+    Serial.println("Start updating " + type);
+  });
+  ArduinoOTA.onEnd([]() {
+    Serial.println("\nEnd");
+  });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  ArduinoOTA.onError([](ota_error_t error) {
+    Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) {
+      Serial.println("Auth Failed");
+    } else if (error == OTA_BEGIN_ERROR) {
+      Serial.println("Begin Failed");
+    } else if (error == OTA_CONNECT_ERROR) {
+      Serial.println("Connect Failed");
+    } else if (error == OTA_RECEIVE_ERROR) {
+      Serial.println("Receive Failed");
+    } else if (error == OTA_END_ERROR) {
+      Serial.println("End Failed");
+    }
+  });
+  ArduinoOTA.begin();
+  }

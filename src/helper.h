@@ -1,5 +1,6 @@
 #include <ETH.h>
 #include <WiFiUdp.h>
+#include <ArduinoOTA.h>
 
 //#define NUM_LEDS 840
 #define UNIVERSE_SIZE 120
@@ -34,6 +35,9 @@
 
 // Pin# of the I²C IO signal for the Ethernet PHY
 #define ETH_MDIO_PIN    18
+
+void fillFastLed();
+void OTA_Func();
 
 static bool eth_connected = false;
 void WiFiEvent(WiFiEvent_t event) {
