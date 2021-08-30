@@ -6,10 +6,11 @@
 
 #include <artnetESP32/ArtnetESP32.h>
 FASTLED_USING_NAMESPACE
+#define NO_SIGNAL_PERIOD 7000
 
-IPAddress ipaddr = IPAddress(10,0,0,41);
-IPAddress gateway = IPAddress(10,0,0,101);
-IPAddress subnet = IPAddress(255,0,0,0);
+IPAddress ipaddr = IPAddress(192,168,0,65);
+IPAddress gateway = IPAddress(192,168,0,101);
+IPAddress subnet = IPAddress(255,255,255,0);
 
 uint16_t pixelsPerUni = UNIVERSE_SIZE; //
 uint8_t startUniverse = START_UNIVERSE; //
@@ -19,6 +20,7 @@ uint16_t pixelCount = pixelsPerUni * universesCount;
 uint8_t uniData[512];
 uint8_t headerData[18]; //artnetHeader
 long lostPackets = 0;
+// long lastPacketTime = 0;
 
 //for syncCount
 uint32_t msyncmax, msync; 
@@ -26,6 +28,7 @@ uint32_t msyncmax, msync;
 //for syncTime
 bool allowShow = false;
 long lastPacketTime = 0;
+long lastSignalTime = 0;
 
 CRGB leds[960]; //840 is maximum for 8 universes with 120 pixels each
 WiFiUDP udp;
