@@ -8,7 +8,7 @@
 FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
-IPAddress ipaddr = IPAddress(192,168,0,65);
+IPAddress ipaddr = IPAddress(192,168,0,59);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
@@ -28,7 +28,10 @@ uint32_t msyncmax, msync;
 //for syncTime
 bool allowShow = false;
 long lastPacketTime = 0;
+
+//for blackout if no signal
 long lastSignalTime = 0;
+bool noSignal = false;
 
 CRGB leds[960]; //840 is maximum for 8 universes with 120 pixels each
 WiFiUDP udp;
@@ -110,8 +113,10 @@ void readUdp() {
     uint8_t universe = headerData[14];
     if(universe >= startUniverse && universe < (startUniverse + universesCount) && uniSize > 500) {
       printf("univ: %d, time: %lumcs\n", universe, micros() - lastPacketTime);
+      if(noSignal) noSignal = false;
       unisCount++;
       lastPacketTime = micros();
+      lastSignalTime = millis();
       allowShow = true;
       int offset = (universe - startUniverse)*pixelsPerUni;
       udp.read((uint8_t *)(leds+offset), pixelsPerUni*3);
@@ -161,10 +166,19 @@ void showSyncTime() {
          }
 }
 
+void checkNoSignal() {
+  if(!noSignal && ((millis() - lastSignalTime) > NO_SIGNAL_PERIOD)) {
+    noSignal = true;
+    fill_solid(leds, 960, CRGB(0, 0, 0));
+    FastLED.show();
+  }
+}
+
 void loop() {
   //MyLan
   ArduinoOTA.handle();
   readUdp();
+  checkNoSignal();
   // showSyncCount();
   showSyncTime();
 }
