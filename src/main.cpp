@@ -9,9 +9,9 @@
 FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
-#define START_UNIVERSE 65
+#define START_UNIVERSE 96
 
-IPAddress ipaddr = IPAddress(192,168,0,65);
+IPAddress ipaddr = IPAddress(192,168,0,96);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
