@@ -151,6 +151,7 @@ void showSyncTime() {
            if(allowShow && (unisCount == universesCount || ((micros() - lastPacketTime) > SHOW_DELAY))) {
              allowShow = false;
           //  long tshow1 = micros();
+          FastLED.setBrightness(205);
            FastLED.show();
           //  printf("***** show: %lu micros\n", tshow2-tshow1);
           Serial.println("******** Show");
