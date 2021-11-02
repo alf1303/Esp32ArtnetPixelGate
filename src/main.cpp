@@ -187,31 +187,34 @@ void loop() {
   showSyncTime();
 }
 
+//ADDITIONAL PINS 1 3 0
 void fillFastLed() {
   switch (universesCount)
   {
   case 8:
-    FastLED.addLeds<WS2813, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
+    FastLED.addLeds<WS2813, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 7:
-    FastLED.addLeds<WS2813, 4, GRB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); //*16
+    FastLED.addLeds<WS2813, 14, GRB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 6:
-    FastLED.addLeds<WS2813, 16, GRB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); //*34
+    FastLED.addLeds<WS2813, 12, GRB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 5:
-    FastLED.addLeds<WS2813, 5, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); //35
+    FastLED.addLeds<WS2813, 4, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 4:
-    FastLED.addLeds<WS2813, 13, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); //32
+    FastLED.addLeds<WS2813, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 3:
-    FastLED.addLeds<WS2813, 14, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); //33
+    FastLED.addLeds<WS2813, 5, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 2:
-    FastLED.addLeds<WS2813, 33, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); //* 14
+    FastLED.addLeds<WS2813, 33, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 1:
-    FastLED.addLeds<WS2813, 32, GRB>(leds, 0, UNIVERSE_SIZE); //13
+    FastLED.addLeds<WS2813, 32, GRB>(leds, 0, UNIVERSE_SIZE); //
     break;
   default:
     FastLED.addLeds<WS2813, 32, GRB>(leds, 0, UNIVERSE_SIZE);
     break;
   }
 }
+
+//32 33 5 17 4 12 14 15 
 
 // void fillFastLed() {
 //   switch (universesCount)

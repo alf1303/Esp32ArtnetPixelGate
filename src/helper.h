@@ -20,12 +20,12 @@
 #endif
 
 //*****************************************************************************
-#define ETH_CLK_MODE    ETH_CLOCK_GPIO17_OUT //ESP32 + LAN8720
-// #define ETH_CLK_MODE    ETH_CLOCK_GPIO0_IN //WT32-ETH0
+// #define ETH_CLK_MODE    ETH_CLOCK_GPIO17_OUT //ESP32 + LAN8720
+#define ETH_CLK_MODE    ETH_CLOCK_GPIO0_IN //WT32-ETH0
 
 // Pin# of the enable signal for the external crystal oscillator (-1 to disable for internal APLL source)
-#define ETH_POWER_PIN   -1 // ESP32 + LAN8720
-//  #define ETH_POWER_PIN   16 //WT32-ETH0
+// #define ETH_POWER_PIN   -1 // ESP32 + LAN8720
+ #define ETH_POWER_PIN   16 //WT32-ETH0
 
  //****************************************************************************
 
