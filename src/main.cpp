@@ -9,9 +9,9 @@
 FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
-#define START_UNIVERSE 21
+#define START_UNIVERSE 1
 
-IPAddress ipaddr = IPAddress(192,168,0,21);
+IPAddress ipaddr = IPAddress(192,168,0,1);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
@@ -36,7 +36,7 @@ long lastPacketTime = 0;
 long lastSignalTime = 0;
 bool noSignal = false;
 
-CRGB leds[960]; //840 is maximum for 8 universes with 120 pixels each
+CRGB leds[850]; //840 is maximum for 8 universes with 120 pixels each
 WiFiUDP udp;
 
 void connectWiFi() {

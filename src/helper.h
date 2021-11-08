@@ -3,8 +3,8 @@
 #include <ArduinoOTA.h>
 
 //#define NUM_LEDS 840
-#define UNIVERSE_SIZE 120
-#define UNIVERSES_COUNT 6
+#define UNIVERSE_SIZE 170
+#define UNIVERSES_COUNT 5
 
 #define ARTNET_PORT 6454
 #define SHOW_DELAY 15000
