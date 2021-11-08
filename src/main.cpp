@@ -9,6 +9,7 @@
 FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
+#define UNIVERSES_COUNT 5 //4
 #define START_UNIVERSE 1
 
 IPAddress ipaddr = IPAddress(192,168,0,1);
@@ -65,10 +66,10 @@ void beginLan() {
 }
 
 void test() {
- fill_solid(leds, 960, CRGB(0, 0, 10));
+ fill_solid(leds, 850, CRGB(0, 0, 10));
  FastLED.show();
  delay(100);
- fill_solid(leds, 960, CRGB::Black);
+ fill_solid(leds, 850, CRGB::Black);
  FastLED.show();
  delay(200);
 }
@@ -81,7 +82,7 @@ void test2() {
   }
   FastLED.show();  
   delay(100);
-  fill_solid(leds, 960, CRGB::Black);
+  fill_solid(leds, 850, CRGB::Black);
   FastLED.show();
   delay(200);
 }
@@ -100,11 +101,12 @@ void setup() {
     beginLan();
   udp.begin(6454);
   fillFastLed();
+  fillFastLedDouble(); //for double universes strips
       msyncmax=(1<<universesCount)-1;
       msync=0;
 
   FastLED.clear();
-  performTest(test2);
+  performTest(test);
   OTA_Func();
 }
 
@@ -151,7 +153,7 @@ void showSyncTime() {
            if(allowShow && (unisCount == universesCount || ((micros() - lastPacketTime) > SHOW_DELAY))) {
              allowShow = false;
           //  long tshow1 = micros();
-          FastLED.setBrightness(205);
+          FastLED.setBrightness(215);
            FastLED.show();
           //  printf("***** show: %lu micros\n", tshow2-tshow1);
           Serial.println("******** Show");
@@ -173,7 +175,7 @@ void showSyncTime() {
 void checkNoSignal() {
   if(!noSignal && ((millis() - lastSignalTime) > NO_SIGNAL_PERIOD)) {
     noSignal = true;
-    fill_solid(leds, 960, CRGB(0, 0, 0));
+    fill_solid(leds, 850, CRGB(0, 0, 0));
     FastLED.show();
   }
 }
@@ -188,30 +190,37 @@ void loop() {
 }
 
 //ADDITIONAL PINS 1 3 0
+//    FastLED.addLeds<UCS1903, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
+//FastLED.addLeds<WS2813, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
 void fillFastLed() {
   switch (universesCount)
   {
   case 8:
-    FastLED.addLeds<WS2813, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 7:
-    FastLED.addLeds<WS2813, 14, GRB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 14, GRB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 6:
-    FastLED.addLeds<WS2813, 12, GRB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 12, GRB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 5:
-    FastLED.addLeds<WS2813, 4, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 4, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 4:
-    FastLED.addLeds<WS2813, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 3:
-    FastLED.addLeds<WS2813, 5, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 5, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 2:
-    FastLED.addLeds<WS2813, 33, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 33, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
   case 1:
-    FastLED.addLeds<WS2813, 32, GRB>(leds, 0, UNIVERSE_SIZE); //
+    FastLED.addLeds<UCS1903, 32, GRB>(leds, 0, UNIVERSE_SIZE); //
     break;
   default:
-    FastLED.addLeds<WS2813, 32, GRB>(leds, 0, UNIVERSE_SIZE);
+    FastLED.addLeds<UCS1903, 32, GRB>(leds, 0, UNIVERSE_SIZE);
     break;
   }
+}
+
+void fillFastLedDouble() {
+    FastLED.addLeds<UCS1903, 33, GRB>(leds, 2*UNIVERSE_SIZE, 2*UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 32, GRB>(leds, 0, 2*UNIVERSE_SIZE); //
 }
 
 //32 33 5 17 4 12 14 15 
