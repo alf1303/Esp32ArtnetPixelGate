@@ -10,9 +10,9 @@ FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
 #define UNIVERSES_COUNT 5 //4
-#define START_UNIVERSE 1
+#define START_UNIVERSE 33 ///////////////////////////    UNIVERSE AND LAST IN IP
 
-IPAddress ipaddr = IPAddress(192,168,0,1);
+IPAddress ipaddr = IPAddress(192,168,0,START_UNIVERSE);
 IPAddress gateway = IPAddress(192,168,0,101);
 IPAddress subnet = IPAddress(255,255,255,0);
 
@@ -101,7 +101,7 @@ void setup() {
     beginLan();
   udp.begin(6454);
   fillFastLed();
-  fillFastLedDouble(); //for double universes strips
+  // fillFastLedDouble(); //for double universes strips
       msyncmax=(1<<universesCount)-1;
       msync=0;
 

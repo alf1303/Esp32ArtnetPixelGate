@@ -41,6 +41,7 @@
 #define ETH_MDIO_PIN    18
 
 void fillFastLed();
+void fillFastLedDouble();
 void OTA_Func();
 
 static bool eth_connected = false;
