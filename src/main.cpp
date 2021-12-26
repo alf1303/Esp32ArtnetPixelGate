@@ -10,7 +10,7 @@ FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
 #define UNIVERSES_COUNT 4 //4
-#define START_UNIVERSE 41 ///////////////////////////    UNIVERSE AND LAST IN IP
+#define START_UNIVERSE 29 ///////////////////////////    UNIVERSE AND LAST IN IP
 
 IPAddress ipaddr = IPAddress(192,168,0,START_UNIVERSE);
 IPAddress gateway = IPAddress(192,168,0,1);
