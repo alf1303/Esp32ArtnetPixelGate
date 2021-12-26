@@ -9,11 +9,11 @@
 FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
-#define UNIVERSES_COUNT 5 //4
-#define START_UNIVERSE 33 ///////////////////////////    UNIVERSE AND LAST IN IP
+#define UNIVERSES_COUNT 4 //4
+#define START_UNIVERSE 41 ///////////////////////////    UNIVERSE AND LAST IN IP
 
 IPAddress ipaddr = IPAddress(192,168,0,START_UNIVERSE);
-IPAddress gateway = IPAddress(192,168,0,101);
+IPAddress gateway = IPAddress(192,168,0,1);
 IPAddress subnet = IPAddress(255,255,255,0);
 
 uint16_t pixelsPerUni = UNIVERSE_SIZE; //
@@ -37,7 +37,7 @@ long lastPacketTime = 0;
 long lastSignalTime = 0;
 bool noSignal = false;
 
-CRGB leds[850]; //840 is maximum for 8 universes with 120 pixels each
+CRGB leds[800]; //840 is maximum for 8 universes with 120 pixels each
 WiFiUDP udp;
 
 void connectWiFi() {
@@ -66,10 +66,10 @@ void beginLan() {
 }
 
 void test() {
- fill_solid(leds, 850, CRGB(0, 0, 10));
+ fill_solid(leds, 800, CRGB(0, 0, 10));
  FastLED.show();
  delay(100);
- fill_solid(leds, 850, CRGB::Black);
+ fill_solid(leds, 800, CRGB::Black);
  FastLED.show();
  delay(200);
 }
@@ -82,7 +82,7 @@ void test2() {
   }
   FastLED.show();  
   delay(100);
-  fill_solid(leds, 850, CRGB::Black);
+  fill_solid(leds, 800, CRGB::Black);
   FastLED.show();
   delay(200);
 }
@@ -175,7 +175,7 @@ void showSyncTime() {
 void checkNoSignal() {
   if(!noSignal && ((millis() - lastSignalTime) > NO_SIGNAL_PERIOD)) {
     noSignal = true;
-    fill_solid(leds, 850, CRGB(0, 0, 0));
+    fill_solid(leds, 800, CRGB(0, 0, 0));
     FastLED.show();
   }
 }
@@ -184,7 +184,7 @@ void loop() {
   //MyLan
   ArduinoOTA.handle();
   readUdp();
-  checkNoSignal();
+  // checkNoSignal();
   // showSyncCount();
   showSyncTime();
 }
@@ -193,29 +193,19 @@ void loop() {
 //    FastLED.addLeds<UCS1903, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
 //FastLED.addLeds<WS2813, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
 void fillFastLed() {
-  switch (universesCount)
-  {
-  case 8:
-    FastLED.addLeds<UCS1903, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-  case 7:
-    FastLED.addLeds<UCS1903, 14, GRB>(leds, 6*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-  case 6:
-    FastLED.addLeds<UCS1903, 12, GRB>(leds, 5*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-  case 5:
-    FastLED.addLeds<UCS1903, 4, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-  case 4:
-    FastLED.addLeds<UCS1903, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-  case 3:
-    FastLED.addLeds<UCS1903, 5, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-  case 2:
-    FastLED.addLeds<UCS1903, 33, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-  case 1:
-    FastLED.addLeds<UCS1903, 32, GRB>(leds, 0, UNIVERSE_SIZE); //
-    break;
-  default:
-    FastLED.addLeds<UCS1903, 32, GRB>(leds, 0, UNIVERSE_SIZE);
-    break;
-  }
+    uint16_t uni_pin_size = 50;
+    uint8_t offset = 20;
+    FastLED.addLeds<WS2813, 0, GRB>(leds, 10*uni_pin_size + 3*offset, uni_pin_size); // 
+    FastLED.addLeds<WS2813, 3, GRB>(leds, 9*uni_pin_size + 3*offset, uni_pin_size); // 
+    FastLED.addLeds<WS2813, 1, GRB>(leds, 8*uni_pin_size + 2*offset, uni_pin_size); // 440-489 ***
+    FastLED.addLeds<WS2813, 15, GRB>(leds, 7*uni_pin_size + 2*offset, uni_pin_size); // 390-439 ***
+    FastLED.addLeds<WS2813, 14, GRB>(leds, 6*uni_pin_size + 2*offset, uni_pin_size); // 340-389 *** 
+    FastLED.addLeds<WS2813, 12, GRB>(leds, 5*uni_pin_size + offset, uni_pin_size); // 270-319 *** 100-149
+    FastLED.addLeds<WS2813, 4, GRB>(leds, 4*uni_pin_size + offset, uni_pin_size); // 220-269 *** 50-99
+    FastLED.addLeds<WS2813, 17, GRB>(leds, 3*uni_pin_size + offset, uni_pin_size); //170-219 *** 0-49
+    FastLED.addLeds<WS2813, 5, GRB>(leds, 2*uni_pin_size, uni_pin_size); // 100-149
+    FastLED.addLeds<WS2813, 33, GRB>(leds, 1*uni_pin_size, uni_pin_size); // 50-99 
+    FastLED.addLeds<WS2813, 32, GRB>(leds, 0, uni_pin_size); // 0-49
 }
 
 void fillFastLedDouble() {
