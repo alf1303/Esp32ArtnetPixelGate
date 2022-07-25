@@ -11,7 +11,6 @@ FASTLED_USING_NAMESPACE
 
 #define UNIVERSES_COUNT 5 //4
 #define START_UNIVERSE 11 ///////////////////////////    UNIVERSE AND LAST IN IP
-#define NEW 0 // 0 - old pins layout variant, 1 - new pin layout variant
 
 IPAddress ipaddr = IPAddress(192,168,0,START_UNIVERSE);
 IPAddress gateway = IPAddress(192,168,0,101);
@@ -98,17 +97,13 @@ void setup() {
   Serial.begin(115200);
   delay(10);
   //connectWiFi();
-  //  artNetYvesConfig();
-    beginLan();
+  //artNetYvesConfig();
+  beginLan();
   udp.begin(6454);
-  if(NEW == 0) {
-    fillFastLed();
-    // fillFastLedDouble(); //for double universes strips
-  } else {
-      fillFastLedNew();
-    // fillFastLedDoubleNew(); //for double universes strips
-  }
-  
+  // fillFastLed(); // OLD version pinout
+  fillFastLedNew(); // NEW version pinout
+  // fillFastLedDouble(); //for double universes strips OLD version
+  // fillFastLedDoubleNew(); //for double universes strips NEW version
       msyncmax=(1<<universesCount)-1;
       msync=0;
 
@@ -199,6 +194,8 @@ void loop() {
 //ADDITIONAL PINS 1 3 0
 //    FastLED.addLeds<UCS1903, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
 //FastLED.addLeds<WS2813, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+
+/// PINOUT FOR OLD VERSION KIEV-KLUB 5 OUTPUTS ONLY
 void fillFastLed() {
   switch (universesCount)
   {
@@ -225,6 +222,7 @@ void fillFastLed() {
   }
 }
 
+// PINOUT FOR NEW VERSION OF PLATA. 5 OUTPUT
 void fillFastLedNew() {
   switch (universesCount)
   {
@@ -246,16 +244,18 @@ void fillFastLedNew() {
     FastLED.addLeds<UCS1903, 14, GRB>(leds, 0, UNIVERSE_SIZE); //
     break;
   default:
-    FastLED.addLeds<UCS1903, 14, GRB>(leds, 0, UNIVERSE_SIZE);
+    FastLED.addLeds<UCS1903, 32, GRB>(leds, 0, UNIVERSE_SIZE);
     break;
   }
 }
 
+//PINOUT FOR DOUBLE OLD
 void fillFastLedDouble() {
     FastLED.addLeds<UCS1903, 33, GRB>(leds, 2*UNIVERSE_SIZE, 2*UNIVERSE_SIZE); // 
     FastLED.addLeds<UCS1903, 32, GRB>(leds, 0, 2*UNIVERSE_SIZE); //
 }
 
+//PINOUT FOR DOUBLE NEW
 void fillFastLedDoubleNew() {
     FastLED.addLeds<UCS1903, 12, GRB>(leds, 2*UNIVERSE_SIZE, 2*UNIVERSE_SIZE); // 
     FastLED.addLeds<UCS1903, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE); //
