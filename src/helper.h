@@ -44,6 +44,7 @@ void fillFastLed();
 void fillFastLedDouble();
 void fillFastLedNew();
 void fillFastLedDoubleNew();
+void fillFastLedNewUniversal();
 void OTA_Func();
 
 static bool eth_connected = false;

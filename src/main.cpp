@@ -11,7 +11,7 @@ FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
 #define UNIVERSES_COUNT 5 //4
-#define START_UNIVERSE 11 ///////////////////////////    UNIVERSE AND LAST IN IP
+#define START_UNIVERSE 46 ///////////////////////////    UNIVERSE AND LAST IN IP
 
 IPAddress ipaddr = IPAddress(192,168,0,START_UNIVERSE);
 IPAddress gateway = IPAddress(192,168,0,101);
@@ -101,7 +101,7 @@ void setup() {
   //artNetYvesConfig();
   beginLan();
   udp.begin(6454);
-  fillFastLed(); // OLD version pinout
+  fillFastLedNewUniversal(); // OLD version pinout
   // fillFastLedNew(); // NEW version pinout
   // fillFastLedDouble(); //for double universes strips OLD version
   // fillFastLedDoubleNew(); //for double universes strips NEW version
@@ -195,6 +195,24 @@ void loop() {
 //ADDITIONAL PINS 1 3 0
 //    FastLED.addLeds<UCS1903, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); //*1
 //FastLED.addLeds<WS2813, 15, GRB>(leds, 7*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+
+// PINOUT FOR NEW VERSION OF PLATA. 5 OUTPUT UNIVERSAL 2 + 1 + 1 + 1
+// ON Board use output  1 for universes 0,1 output 3 for uni2, output 4 for uni3, output 5 for uni4 
+void fillFastLedNewUniversal() {
+  switch (universesCount)
+  {
+  case 5:
+    FastLED.addLeds<UCS1903, 5, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 4, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 12, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
+    FastLED.addLeds<UCS1903, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE); //
+    break;
+  default:
+    FastLED.addLeds<UCS1903, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE);
+    break;
+  }
+}
 
 /// PINOUT FOR OLD VERSION KIEV-KLUB 5 OUTPUTS ONLY
 void fillFastLed() {
