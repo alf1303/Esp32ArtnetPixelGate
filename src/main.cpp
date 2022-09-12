@@ -1,4 +1,5 @@
 //platformio run -t upload --upload-port 192.168.0.41
+//uploading by OTA command
 
 #include <Arduino.h>
 #include <FastLED.h>
@@ -100,8 +101,8 @@ void setup() {
   //artNetYvesConfig();
   beginLan();
   udp.begin(6454);
-  // fillFastLed(); // OLD version pinout
-  fillFastLedNew(); // NEW version pinout
+  fillFastLed(); // OLD version pinout
+  // fillFastLedNew(); // NEW version pinout
   // fillFastLedDouble(); //for double universes strips OLD version
   // fillFastLedDoubleNew(); //for double universes strips NEW version
       msyncmax=(1<<universesCount)-1;

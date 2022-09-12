@@ -1,0 +1,10 @@
+
+на Esp8266 - закоротить EN на GND
+
+соединить с WT32:
+3v3-3v3,
+TX-TXD (if flashing by esp8266) if by uart - RX
+RX-RXD (if flashing by esp8266) if by uart - TX
+GND-GND
+
+на WT32 подготовить перемычку, чтобы соединить IO0(рядом с RXD из предыдущего сообщения) с GND
