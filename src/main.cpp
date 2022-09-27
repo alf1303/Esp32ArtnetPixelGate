@@ -11,7 +11,7 @@ FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
 #define UNIVERSES_COUNT 5 //4
-#define START_UNIVERSE 46 ///////////////////////////    UNIVERSE AND LAST IN IP
+#define START_UNIVERSE 31 ///////////////////////////    UNIVERSE AND LAST IN IP
 
 IPAddress ipaddr = IPAddress(192,168,0,START_UNIVERSE);
 IPAddress gateway = IPAddress(192,168,0,101);
@@ -75,6 +75,20 @@ void test() {
  delay(200);
 }
 
+void testlong() {
+  for(int i = 0; i < 1; i++) {
+    fill_solid(leds, 850, CRGB(10, 0, 0));
+    FastLED.show();
+    delay(5000);
+    fill_solid(leds, 850, CRGB(0, 10, 0));
+    FastLED.show();
+    delay(5000);
+    fill_solid(leds, 850, CRGB(0, 0, 10));
+    FastLED.show();
+    delay(5000);
+  }
+}
+
 void test2() {
   uint8_t size = 24;
   uint16_t testLeds[size] = {0,1,118,119,120,121,238,239,240,241,358,359,360,361,478,479,480,481,598,599,600,601,718,719};
@@ -102,6 +116,7 @@ void setup() {
   beginLan();
   udp.begin(6454);
   fillFastLedNewUniversal(); // OLD version pinout
+  // fillFastLedNewUniversal(); // NEW versio pinout, universal output
   // fillFastLedNew(); // NEW version pinout
   // fillFastLedDouble(); //for double universes strips OLD version
   // fillFastLedDoubleNew(); //for double universes strips NEW version
@@ -109,7 +124,8 @@ void setup() {
       msync=0;
 
   FastLED.clear();
-  performTest(test);
+  // performTest(testlong);
+  testlong();
   OTA_Func();
 }
 
@@ -202,14 +218,15 @@ void fillFastLedNewUniversal() {
   switch (universesCount)
   {
   case 5:
-    FastLED.addLeds<UCS1903, 5, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-    FastLED.addLeds<UCS1903, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-    FastLED.addLeds<UCS1903, 4, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-    FastLED.addLeds<UCS1903, 12, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 
-    FastLED.addLeds<UCS1903, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE); //
+  // ws2811 UCS1904 *UCS1903*   (WS2811, WS2852 UCS1904Controller800Khz?, UCS2903?)
+    // FastLED.addLeds<WS2811, 5, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 5
+    FastLED.addLeds<WS2811, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 17
+    FastLED.addLeds<WS2811, 4, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 4
+    // FastLED.addLeds<WS2811, 12, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 12
+    FastLED.addLeds<WS2811, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE); // 14
     break;
   default:
-    FastLED.addLeds<UCS1903, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE);
+    FastLED.addLeds<WS2811, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE);
     break;
   }
 }
