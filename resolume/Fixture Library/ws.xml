@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Fixture name="Fixture" uuid="b6c7372c4ab240ceb6b65ee4151e64f3" fixtureName="WS">
+	<versionInfo name="Resolume Arena" majorVersion="7" minorVersion="2" microVersion="1" revision="70674"/>
+	<Params name="Params">
+		<ParamFixturePixels storage="0" name="Pixels">
+			<ParamRange name="Width" T="DOUBLE" default="1" value="1">
+				<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+				<BehaviourDouble name="BehaviourDouble"/>
+				<ValueRange name="defaultRange" min="1" max="512"/>
+				<ValueRange name="minMax" min="1" max="512"/>
+				<ValueRange name="startStop" min="1" max="512"/>
+			</ParamRange>
+			<ParamRange name="Height" T="DOUBLE" default="1" value="120">
+				<PhaseSourceStatic name="PhaseSourceStatic" phase="0.23287671232876711036"/>
+				<BehaviourDouble name="BehaviourDouble"/>
+				<ValueRange name="defaultRange" min="1" max="512"/>
+				<ValueRange name="minMax" min="1" max="512"/>
+				<ValueRange name="startStop" min="1" max="512"/>
+			</ParamRange>
+			<ParamChoice name="Color Format" T="STRING" default="rgb" value="rgb" storeChoices="0"/>
+			<ParamChoice name="Distribution" T="INT32" default="170" value="154" storeChoices="0"/>
+			<ParamRange name="Gamma" T="DOUBLE" default="2.5" value="2.5499999999999998224">
+				<PhaseSourceStatic name="PhaseSourceStatic" phase="0.77499999999999991118"/>
+				<BehaviourDouble name="BehaviourDouble"/>
+				<ValueRange name="defaultRange" min="1" max="3"/>
+				<ValueRange name="minMax" min="1" max="3"/>
+				<ValueRange name="startStop" min="1" max="3"/>
+			</ParamRange>
+		</ParamFixturePixels>
+		<ParamRange storage="0" name="Dimmer" T="DOUBLE" default="0" value="255">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="1"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+	</Params>
+</Fixture>
+

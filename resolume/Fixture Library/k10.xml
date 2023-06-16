@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Fixture name="Fixture" uuid="77d45b23438f481bbe26b676866a91e5" fixtureName="K10">
+	<versionInfo name="Resolume Arena" majorVersion="7" minorVersion="2" microVersion="1" revision="70674"/>
+	<Params name="Params">
+		<ParamRange storage="0" name="New Parameter 1" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 5" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 6" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 7" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 8" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 9" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 10" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 11" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 12" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 13" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 14" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 15" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 16" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 17" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 2" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 3" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamRange storage="0" name="New Parameter 4" T="DOUBLE" default="0" value="0">
+			<PhaseSourceStatic name="PhaseSourceStatic" phase="0"/>
+			<BehaviourDouble name="BehaviourDouble"/>
+			<ValueRange name="defaultRange" min="0" max="255"/>
+			<ValueRange name="minMax" min="0" max="255"/>
+			<ValueRange name="startStop" min="0" max="255"/>
+		</ParamRange>
+		<ParamFixturePixels storage="0" name="Pixels">
+			<ParamRange name="Width" T="DOUBLE" default="1" value="5">
+				<PhaseSourceStatic name="PhaseSourceStatic" phase="0.0078277886497064574911"/>
+				<BehaviourDouble name="BehaviourDouble"/>
+				<ValueRange name="defaultRange" min="1" max="512"/>
+				<ValueRange name="minMax" min="1" max="512"/>
+				<ValueRange name="startStop" min="1" max="512"/>
+			</ParamRange>
+			<ParamRange name="Height" T="DOUBLE" default="1" value="4">
+				<PhaseSourceStatic name="PhaseSourceStatic" phase="0.0058708414872798431183"/>
+				<BehaviourDouble name="BehaviourDouble"/>
+				<ValueRange name="defaultRange" min="1" max="512"/>
+				<ValueRange name="minMax" min="1" max="512"/>
+				<ValueRange name="startStop" min="1" max="512"/>
+			</ParamRange>
+			<ParamChoice name="Color Format" T="STRING" default="rgb" value="rgbw" storeChoices="0"/>
+			<ParamChoice name="Distribution" T="INT32" default="170" value="85" storeChoices="0"/>
+			<ParamRange name="Gamma" T="DOUBLE" default="2.5" value="2.5">
+				<PhaseSourceStatic name="PhaseSourceStatic" phase="0.75"/>
+				<BehaviourDouble name="BehaviourDouble"/>
+				<ValueRange name="defaultRange" min="1" max="3"/>
+				<ValueRange name="minMax" min="1" max="3"/>
+				<ValueRange name="startStop" min="1" max="3"/>
+			</ParamRange>
+		</ParamFixturePixels>
+	</Params>
+</Fixture>
+
