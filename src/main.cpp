@@ -10,8 +10,9 @@
 FASTLED_USING_NAMESPACE
 #define NO_SIGNAL_PERIOD 7000
 
-#define UNIVERSES_COUNT 5 //4
-#define START_UNIVERSE 31 ///////////////////////////    UNIVERSE AND LAST IN IP
+#define LEDS 850
+#define UNIVERSES_COUNT 4 //4
+#define START_UNIVERSE 36 ///////////////////////////    UNIVERSE AND LAST IN IP
 
 IPAddress ipaddr = IPAddress(192,168,0,START_UNIVERSE);
 IPAddress gateway = IPAddress(192,168,0,101);
@@ -124,8 +125,8 @@ void setup() {
       msync=0;
 
   FastLED.clear();
-  // performTest(testlong);
-  testlong();
+  performTest(test);
+  // testlong();
   OTA_Func();
 }
 
@@ -199,6 +200,16 @@ void checkNoSignal() {
   }
 }
 
+// void loop() {
+//   ArduinoOTA.handle();
+//   fill_solid(leds, 850, CRGB(5, 0, 0));
+//   FastLED.show();
+//   delay(3000);
+//   fill_solid(leds, 850, CRGB(0, 0, 5));
+//   FastLED.show();
+//   delay(3000);
+// }
+
 void loop() {
   //MyLan
   ArduinoOTA.handle();
@@ -217,12 +228,12 @@ void loop() {
 void fillFastLedNewUniversal() {
   switch (universesCount)
   {
-  case 5:
+  case 4:
   // ws2811 UCS1904 *UCS1903*   (WS2811, WS2852 UCS1904Controller800Khz?, UCS2903?)
-    // FastLED.addLeds<WS2811, 5, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 5
+    FastLED.addLeds<WS2811, 5, GRB>(leds, 4*UNIVERSE_SIZE, UNIVERSE_SIZE); // 5
     FastLED.addLeds<WS2811, 17, GRB>(leds, 3*UNIVERSE_SIZE, UNIVERSE_SIZE); // 17
     FastLED.addLeds<WS2811, 4, GRB>(leds, 2*UNIVERSE_SIZE, UNIVERSE_SIZE); // 4
-    // FastLED.addLeds<WS2811, 12, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 12
+    FastLED.addLeds<WS2811, 12, GRB>(leds, 1*UNIVERSE_SIZE, UNIVERSE_SIZE); // 12
     FastLED.addLeds<WS2811, 14, GRB>(leds, 0, 2*UNIVERSE_SIZE); // 14
     break;
   default:
